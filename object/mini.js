@@ -1,7 +1,6 @@
 const prompt = require("prompt-sync")();
-let tache=[];
+let tache= [];
 let idCounter=1;
-let choix;
 function afficherMunu(){
 
 do{
@@ -11,38 +10,41 @@ console.log("2.Ajouter une tâche ");
 console.log("3. Rechercher une tâche ");
 console.log("4.Modifier une tâche");
 console.log("5.Supprimer une tâche");
-console.log("6.Changer le statut d’une tâche ");
+console.log('6. Changer le statut  tâche');
+
 console.log("7.Quitter");
- choix=prompt("Enter un choix: ");
+let choix=prompt("Enter un choix: ");
 
 switch(choix){
     case "1":
-      ajouterUnetache();
+
+      afficherUnetache();
       break;
 
-     case"2":
-     afficherUnetache();
+     case "2":
+       ajouterUnetache();
       break;
 
     case "3":
         rechercherUnetache();
       break;
 
-    case"4":
+    case "4":
     ModifierUnetache();
        break;
 
-    case"5":
+    case "5":
     SupprimerUnetache();
        break;
+    case "6":
+        changerStatutTache();
+        break;
 
-    case"6
-
-
-
-
-
-
+    case "7":
+        filtrerTaches()
+        break;
+    default:
+        console.log("aucun choix") ;   
 
 }
 
@@ -58,15 +60,21 @@ function ajouterUnetache (){
         description:description,
         isDone:false
     };
-    tache.puch(nouvelleTache)
+    tache.push(nouvelleTache)
     console.log("task added successfully");
 };
-function {
-    if(tache.length===0){afficherUnetache()
+function afficherUnetache () {
+    if(tache.length===0){
+        
         console.log("no tasks for the moment ");
-    }else{
+    }
+    else{
         console.log("===show a task===");
-        console.log(`${tache.id}.${tache.description}.[${isDone ? "completed":"pending"}]`);
+        for(let t of tache){
+             const statut = t.isDone ? "completed" : "pending";
+          console.log(`${tache.id}.${tache.description}.[${isDone ? "completed":"pending"}]`);  
+        }
+        
 
     }
 };
@@ -74,7 +82,7 @@ function {
 function rechercherUnetache(){
     const rechercher=prompt("enter a name for recherche : ");
     const resultat= tache.filter(tache=>
-        tache.descripion.toLowerCase().includes(rechercher.toLowerCase()))
+        tache.description.toLowerCase().includes(rechercher.toLowerCase()))
       if (resultat.length===0){
     console.log("no tasks found ");
 }else{
@@ -105,7 +113,7 @@ function SupprimerUnetache(){
         console.log("invalid task :")
     }
 };
-function chargerStatutTache(){
+function changerStatutTache(){
     const id =prompt("enter id of task :");
     const tache=tache.find(t=>t.id===id);
     if(!tache){
@@ -122,7 +130,7 @@ function filtrerTaches() {
     choix === "1" ? t.isDone : !t.isDone
   );
 
-  for (let tache of filtres) {
+  for (let t of filtres) {
     console.log(`${tache.id}. ${tache.description} [${tache.isDone ? "completed" : "pending"}]`);
   }
 };
