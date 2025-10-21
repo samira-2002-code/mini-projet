@@ -42,24 +42,24 @@ function afficherMenu() {
         filtrerTaches();
         break;
       case "8":
-        console.log(" Fin du programme.");
+        console.log(" end of programme.");
         break;
       default:
-        console.log(" Choix invalide.");
+        console.log(" invalide choise.");
     }
   }
 }
 
 
 function ajouterTache() {
-  const description = prompt("Entrez la description d'une tâche : ");
+  const description = prompt("Enter the description of a task : ");
   const nouvelleTache = {
     id: idCounter++,
     description: description,
     isDone: false
   };
   taches.push(nouvelleTache);
-  console.log(" Tâche ajoutée !");
+  console.log(" task added !");
 }
 
 
@@ -67,7 +67,7 @@ function afficherTaches() {
   if (taches.length === 0) {
     console.log("no task for the moment.");
   } else {
-    console.log(" Liste des tâches :");
+    console.log(" Liste des taches :");
     for (let t of taches) {
       const statut = t.isDone ? "complete" : "pending";
       console.log(`${t.id}. ${t.description} [${statut}]`);
@@ -77,13 +77,13 @@ function afficherTaches() {
 
 
 function rechercherTache() {
-  const recherche = prompt("Mot-clé à rechercher : ").toLowerCase();
+  const recherche = prompt("enter name of reserch : ").toLowerCase();
   const resultat = taches.filter(t => t.description.toLowerCase().includes(recherche));
 
   if (resultat.length === 0) {
     console.log("no task fond.");
   } else {
-    console.log("Résultats :");
+    console.log("Resultats :");
     for (let t of resultat) {
       const statut = t.isDone ? "complete" : "pending";
       console.log(`${t.id}. ${t.description} [${statut}]`);
@@ -93,11 +93,11 @@ function rechercherTache() {
 
 
 function modifierTache() {
-  const id = parseInt(prompt("ID de la tâche à modifier : "));
+  const id = parseInt(prompt("Id of task  : "));
   const tache = taches.find(t => t.id === id);
 
   if (!tache) {
-    console.log("Tâche introuvable.");
+    console.log("Task not found.");
   } else {
     const nouvelleDesc = prompt("Nouvelle description : ");
     tache.description = nouvelleDesc;
@@ -107,40 +107,40 @@ function modifierTache() {
 
 
 function supprimerTache() {
-  const id = parseInt(prompt("ID de la tâche à supprimer : "));
+  const id = parseInt(prompt("Id de la tach a supprimer : "));
   const index = taches.findIndex(t => t.id === id);
 
   if (index === -1) {
-    console.log("Tâche introuvable.");
+    console.log("Task not found.");
   } else {
     taches.splice(index, 1);
-    console.log(" Tâche supprimée.");
+    console.log(" Task deleted.");
   }
 }
 
 
 function changerStatutTache() {
-  const id = parseInt(prompt("ID de la tâche : "));
+  const id = parseInt(prompt("Id de la tache : "));
   const tache = taches.find(t => t.id === id);
 
   if (!tache) {
-    console.log(" Tâche non trouvée.");
+    console.log(" Tache non trouvee.");
   } else {
     tache.isDone = !tache.isDone;
-    console.log(` Statut mis à jour : ${tache.isDone ? " terminée" : "en attente"}`);
+    console.log(` Statut update : ${tache.isDone ? " complete" : "pending"}`);
   }
 }
 
 
 function filtrerTaches() {
-  const choix = prompt("Afficher (1) terminées ou (2) en attente ? ");
+  const choix = prompt("show (1) complete or (2) pending ? ");
   const filtres = taches.filter(t => choix === "1" ? t.isDone : !t.isDone);
 
   if (filtres.length === 0) {
-    console.log("Aucune tâche trouvée.");
+    console.log("Aucune tache trouvée.");
   } else {
     for (let t of filtres) {
-      const statut = t.isDone ? " terminée" : " en attente";
+      const statut = t.isDone ? " complete" : " pending";
       console.log(`${t.id}. ${t.description} [${statut}]`);
     }
   }
