@@ -2,7 +2,7 @@ const prompt = require("prompt-sync")();
 let livre = [];
 let IdLivre = 1;
 let choise = "";
-// Introduire un livre:
+// Introduire un livre:///////////////////////////////////////////////////////////////////
 function IntroduireUnlivre() {
 
     const titre = prompt("entrez le titre du livre :");
@@ -13,7 +13,7 @@ function IntroduireUnlivre() {
 
 };
 
-//Ajouter plusieurs livres :
+//Ajouter plusieurs livres ://////////////////////////////////////////////////////////////
 
 
 function AjouterPlusieurLivre() {
@@ -23,25 +23,25 @@ function AjouterPlusieurLivre() {
     };
 
 };
-//Afficher tous les livres :
+//Afficher tous les livres ://///////////////////////////////////////////////////////////
 
 function afficherToutLivre() {
     if (livre.length == 0) {
         console.log("auccun livre pour le moment ");
-    } else{
+    } else {
         console.log("list des livres ");
-    for (let i = 0; i < livre.length; i++) {
-        aff = livre[i];
-        console.log(`id : ${aff.Id} ${aff.titre} ${aff.auteur} ${aff.lannee}. ${aff.statut}`);
-    
-    }
+        for (let i = 0; i < livre.length; i++) {
+            aff = livre[i];
+            console.log(`id : ${aff.Id} ${aff.titre} ${aff.auteur} ${aff.lannee}. ${aff.statut}`);
 
-}
+        }
+
+    }
 
 
 };
 
-//Trier les livres par titre (ascendant/descendant):
+//Trier les livres par titre (ascendant/descendant)://///////////////////////////////////
 
 function TrierLesLivres() {
     console.log = prompt(" Sort books by title: (1) Ascending or (2) Descending ");
@@ -64,7 +64,7 @@ function TrierLesLivres() {
     )
 };
 
-//Trier les livres par année de publication:
+//Trier les livres par année de publication://///////////////////////////////////////////
 
 function trierUnlivreParannne() {
 
@@ -72,25 +72,25 @@ function trierUnlivreParannne() {
     console.log(livre);
 };
 
-//Afficher uniquement les livres disponibles:
-  
+//Afficher uniquement les livres disponibles:////////////////////////////////////////////
 
-function  livredispuni(){
-    if(livre.length==0){
-        console.log("The library is empty");  
+
+function livredispuni() {
+    if (livre.length == 0) {
+        console.log("The library is empty");
     }
-    for (let i = 0; i< livre.length; i++) {
-      if (livre[i].statut == true) {
-        dispo = livre[i].statut
+    for (let i = 0; i < livre.length; i++) {
+        if (livre[i].statut == true) {
+            dispo = livre[i].statut
 
-        console.log(dispo);
-      }
-       
+            console.log(dispo);
+        }
+
     }
 
 };
 
-//Rechercher un livre par ID_livre:
+//Rechercher un livre par ID_livre://///////////////////////////////////////////////////
 
 function rechercheId() {
     const rechercheId = parseInt(prompt("Book ID to search for : "));
@@ -116,21 +116,21 @@ function menuPrincipale() {
 
 
         console.log("===MENU===");
-        console.log("1.Introduire un livre ");
-        console.log("2.Ajouter plusieurs livres ");
-        console.log("3.Afficher tous les livres ");
-        console.log("4.Trier les livres par titre (ascendant/descendant) ");
-        console.log("5. Trier les livres par année de publication ");
-        console.log("6.Afficher uniquement les livres disponibles ");
-        console.log("7.Rechercher un livre par ID_livre ");
-        console.log("0.quiter ");
-        choise = prompt("enter a choise :");
+        console.log("1.==Introduire un livre== ");
+        console.log("2.==Ajouter plusieurs livres== ");
+        console.log("3.==Afficher tous les livres== ");
+        console.log("4.==Trier les livres par titre (ascendant/descendant)== ");
+        console.log("5.== Trier les livres par année de publication== ");
+        console.log("6.==Afficher uniquement les livres disponibles== ");
+        console.log("7.==Rechercher un livre par ID_livre== ");
+        console.log("0.=quiter= ");
+        choise = prompt("==enter a choise== :");
 
-        
-       if(choise=="0") {
-        console.log("bye!");
-        break;
-       }
+
+        if (choise == "0") {
+            console.log("bye!");
+            break;
+        }
         switch (choise) {
 
             case "1":
@@ -148,15 +148,15 @@ function menuPrincipale() {
             case "5":
                 trierUnlivreParannne();
                 break;
-            case"6":
+            case "6":
                 livredispuni();
                 break;
-            case"7":
+            case "7":
                 rechercheId();
-                 break;
-            case"0":
-                 console.log("bye!");
-                 break;
+                break;
+            case "0":
+                console.log("bye!");
+                break;
             default:
                 console.log("invalid choice,please try again");
         }
