@@ -7,7 +7,7 @@ function IntroduireUnlivre() {
 
     const titre = prompt("entrez le titre du livre :");
     const année = parseInt(prompt("entrez l'année de publication :"));
-    const auteur = parseInt(prompt("entrez le nom d'auteur:"));
+    const auteur = prompt("entrez le nom d'auteur:");
 
     livre.push({ Id: IdLivre++, titre: titre, auteur: auteur, année: année, statut: true });
 
@@ -18,7 +18,7 @@ function IntroduireUnlivre() {
 
 function AjouterPlusieurLivre() {
     const number = parseInt(prompt("entrez le number de livre a ajouter : "));
-    for (let i = 0; i < livre.length; i++) {
+    for (let i = 0; i < number; i++) {
         console.log(`number of book ${i + 1} :`);
     };
 
@@ -28,12 +28,15 @@ function AjouterPlusieurLivre() {
 function afficherToutLivre() {
     if (livre.length == 0) {
         console.log("auccun livre pour le moment ");
-    } else
+    } else{
         console.log("list des livres ");
     for (let i = 0; i < livre.length; i++) {
         aff = livre[i];
         console.log(`id : ${aff.Id} ${aff.titre} ${aff.auteur} ${aff.lannee}. ${aff.statut}`);
+    
     }
+
+}
 
 
 };
@@ -41,7 +44,7 @@ function afficherToutLivre() {
 //Trier les livres par titre (ascendant/descendant):
 
 function TrierLesLivres() {
-    console.log = prompt("Trier les livres par titre : (1) Ascendant ou (2) Descendant ? ");
+    console.log = prompt(" Sort books by title: (1) Ascending or (2) Descending ");
     livre.sort(function (a, b) {
         if (a.titre < b.titre) return -1;
         if (a.titre > b.titre) return 1;
@@ -74,18 +77,33 @@ function trierUnlivreParannne() {
 
 function  livredispuni(){
     if(livre.length==0){
-        console.log("la bib et vide");  
+        console.log("The library is empty");  
     }
     for (let i = 0; i< livre.length; i++) {
-      if (livre) {
-        
+      if (livre[i].statut == true) {
+        dispo = livre[i].statut
+
+        console.log(dispo);
       }
        
     }
 
-}
+};
 
+//Rechercher un livre par ID_livre:
 
+function rechercheId() {
+    const rechercheId = parseInt(prompt("Book ID to search for : "));
+    const result = livre.filter(l => l.Id === rechercheId);
+    if (result.length === 0) {
+        console.log("No book found.");
+    } else {
+        for (let l of result) {
+            console.log(`Id : ${l.Id}, Auteur : ${l.auteur}, Année : ${l.année}, Disponible : ${l.statut ? "Oui" : "Non"}`);
+        }
+    }
+
+};
 
 
 
@@ -108,11 +126,11 @@ function menuPrincipale() {
         console.log("0.quiter ");
         choise = prompt("enter a choise :");
 
-        if (choise == 0) {
-            console.log("bye")
-            break;
-        }
-
+        
+       if(choise=="0") {
+        console.log("bye!");
+        break;
+       }
         switch (choise) {
 
             case "1":
@@ -125,17 +143,28 @@ function menuPrincipale() {
                 afficherToutLivre();
                 break;
             case "4":
-                TirerUnlivre();
+                TrierLesLivres();
                 break;
             case "5":
-                trierUnlivreParannne()
+                trierUnlivreParannne();
                 break;
+            case"6":
+                livredispuni();
+                break;
+            case"7":
+                rechercheId();
+                 break;
+            case"0":
+                 console.log("bye!");
+                 break;
+            default:
+                console.log("invalid choice,please try again");
         }
 
 
 
     }
-}
+};
 
 menuPrincipale();
 
